@@ -1,0 +1,4 @@
+repository "Z-Anime-Outpost/Z-Anime-Outpost@7972344144664@cloud"
+  path "/"
+    br "/main"
+    co "/main"

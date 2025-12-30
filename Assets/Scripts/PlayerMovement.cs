@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {   
         float playerWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
+        float playerHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
+
 
         rb = GetComponent<Rigidbody2D>();
         _minX = mapRenderer.bounds.min.x;
@@ -22,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         _maxY = mapRenderer.bounds.max.y;
         
         _minX += playerWidth; _maxX -= playerWidth;
-        _minY += playerWidth; _maxY -= playerWidth;
+        _minY += playerHeight; _maxY -= playerHeight;
     }
     void OnMove(InputValue value)
     {

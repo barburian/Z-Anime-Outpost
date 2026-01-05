@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float speed = 3f;
+    [SerializeField] private float _speed = 3f;
     private Transform _player;
     private Rigidbody2D _rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -11,11 +11,9 @@ public class EnemyMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         
         
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        
-        if (playerObj != null)
+        if (Player.Instance != null)
         {
-            _player = playerObj.transform;
+            _player = Player.Instance.transform;
         }
     }
 
@@ -30,7 +28,7 @@ public class EnemyMovement : MonoBehaviour
 
         Vector2 direction = (_player.position - transform.position).normalized;
 
-        Vector2 newPos = _rb.position + direction * speed * Time.fixedDeltaTime;
+        Vector2 newPos = _rb.position + direction * _speed * Time.fixedDeltaTime;
         _rb.MovePosition(newPos);
     }
 }

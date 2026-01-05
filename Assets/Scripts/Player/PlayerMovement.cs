@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField]private SpriteRenderer _mapRenderer;
-    public float movSpeed;
+    [SerializeField]private float _moveSpeed;
     private float _minX, _maxX, _minY, _maxY;
     private Vector2 _moveInput;
     
@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         _minX += playerWidth; _maxX -= playerWidth;
         _minY += playerHeight; _maxY -= playerHeight;
     }
+
     void OnMove(InputValue value)
     {
         _moveInput = value.Get<Vector2>();
@@ -37,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     }
      void FixedUpdate()
     {
-        Vector2 nextPosition = rb.position + _moveInput * movSpeed * Time.fixedDeltaTime;
+        Vector2 nextPosition = rb.position + _moveInput * _moveSpeed * Time.fixedDeltaTime;
 
         float clampedX = Mathf.Clamp(nextPosition.x, _minX, _maxX);
         float clampedY = Mathf.Clamp(nextPosition.y, _minY, _maxY);

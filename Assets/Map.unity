@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4865d486faf5a4d923ebeb8a0879ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHandler
-  weapons: []
+  activeWeapons: []
 --- !u!1 &623160732
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +692,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4865d486faf5a4d923ebeb8a0879ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  weapons: []
+  activeWeapons: []
+--- !u!114 &1605786566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605786558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4423584ad3f87cf47b0f74ef511154bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &5438316316095797884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -705,6 +717,10 @@ PrefabInstance:
       propertyPath: _enemyPrefab
       value: 
       objectReference: {fileID: 768491299222288839, guid: d7dfe967980b58d4594b78d18868e3db, type: 3}
+    - target: {fileID: 1350208636362642149, guid: 2e01293aea51c614d9d11c449556bedc, type: 3}
+      propertyPath: _moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1350208636362642149, guid: 2e01293aea51c614d9d11c449556bedc, type: 3}
       propertyPath: _mapRenderer
       value: 
@@ -763,6 +779,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5972249719620225919, guid: 2e01293aea51c614d9d11c449556bedc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1605786565}
+    - targetCorrespondingSourceObject: {fileID: 5972249719620225919, guid: 2e01293aea51c614d9d11c449556bedc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1605786566}
   m_SourcePrefab: {fileID: 100100000, guid: 2e01293aea51c614d9d11c449556bedc, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

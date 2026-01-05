@@ -5,16 +5,18 @@ public class EnemySpawn : MonoBehaviour
 {   [SerializeField] private GameObject _enemyPrefab; 
     [SerializeField] private float _spawnInterval = 2f; 
     [SerializeField] private float _spawnRadius = 10f;
+    private WaitForSeconds _spawnWait;
 
     private Transform player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
+        _spawnWait = new WaitForSeconds(_spawnInterval);
+        
+        if (Player.Instance != null)
         {
-            player = playerObj.transform;
+            player = Player.Instance.transform;
             // Pornim cronometrul de spawn
             StartCoroutine(SpawnEnemyRoutine());
         }
@@ -30,7 +32,7 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    private void SpawnEnemy()
     {
         Vector2 randomPos = Random.insideUnitCircle.normalized * _spawnRadius;
         

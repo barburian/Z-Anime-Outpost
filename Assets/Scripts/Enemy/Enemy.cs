@@ -1,26 +1,29 @@
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{   public static Enemy Instance { get; private set; }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+{
+    [SerializeField] private float _collisionDamage = 10f;
+    [SerializeField] private HealthSystem _health;
+
+    private void Awake()
     {
-        
-    }
-    private void Awake() 
-    {
-    // Standard Singleton Pattern: ensure only one player exists
-        if (Instance != null && Instance != this) 
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
+        if (_health == null) _health = GetComponent<HealthSystem>();
+        if (_health != null) _health.OnDeath.AddListener(() => Destroy(gameObject));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.TryGetComponent(out IDamageable target))
+        {
+            target.TakeDamage(_collisionDamage);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out IDamageable target))
+        {
+            target.TakeDamage(_collisionDamage);
+        }
     }
 }

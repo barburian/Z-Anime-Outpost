@@ -22,14 +22,14 @@ public class EnemySpawn : MonoBehaviour
 
     }
     IEnumerator SpawnEnemyRoutine()
+{
+    var wait = new WaitForSeconds(_spawnInterval);
+    while (true)
     {
-        while (player != null)
-        {
-            SpawnEnemy();
-            // Așteptăm x secunde înainte să repetăm
-            yield return new WaitForSeconds(_spawnInterval);
-        }
+        if (Player.Instance != null) SpawnEnemy();
+        yield return wait;
     }
+}
 
     private void SpawnEnemy()
     {

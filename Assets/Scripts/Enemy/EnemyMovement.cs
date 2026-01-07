@@ -1,8 +1,7 @@
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
-{
-    [SerializeField] private float _speed = 3f;
+{   [SerializeField] private EnemyData enemy;
     private Transform _player;
     private Rigidbody2D _rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
 
         Vector2 direction = (_player.position - transform.position).normalized;
 
-        Vector2 newPos = _rb.position + direction * _speed * Time.fixedDeltaTime;
+        Vector2 newPos = _rb.position + direction * enemy.enemySpeed * Time.fixedDeltaTime;
         
         _rb.MovePosition(newPos);
     }

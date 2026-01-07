@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float damage; // Cât damage dă acest glonț specific
+    private float damage; 
     private Rigidbody2D rb;
 
     

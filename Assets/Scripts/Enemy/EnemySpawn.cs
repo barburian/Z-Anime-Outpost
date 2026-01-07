@@ -26,7 +26,7 @@ public class EnemySpawn : MonoBehaviour
         while (player != null)
         {
             SpawnEnemy();
-            // Așteptăm x secunde înainte să repetăm
+            
             yield return new WaitForSeconds(_spawnInterval);
         }
     }

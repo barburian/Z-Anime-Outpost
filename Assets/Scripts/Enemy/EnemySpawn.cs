@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class EnemySpawn : MonoBehaviour
 {
-
     [System.Serializable]
     public class EnemyConfig
     {
@@ -17,23 +16,16 @@ public class EnemySpawn : MonoBehaviour
     {
         public string groupName;
         public List<EnemyConfig> enemiesInGroup;
-        
         public int repeatCount = 5; 
-
         public float spawnInterval = 2f; 
-
         public float delayAfterGroup = 1f; 
     }
 
-    // 3. Valul Principal (Acum are o DURATĂ MAXIMĂ)
     [System.Serializable]
     public class Wave
     {
         public string waveName;
-        
-        [Tooltip("Durata totală a valului (în secunde). Când expiră, jocul se termină sau trecem mai departe.")]
-        public float waveDuration = 60f; // <--- waveTimer-ul cerut de tine
-        
+        public float waveDuration = 60f;
         public List<EnemyGroup> groups;
     }
 
@@ -43,9 +35,7 @@ public class EnemySpawn : MonoBehaviour
 
     private int _currentWaveIndex = 0;
     private Transform player;
-    
-    // Variabile pentru timer
-    private float _currentWaveTime = 0f; // Timer-ul intern care numără
+    private float _currentWaveTime = 0f; 
     private bool _isWaveActive = false;
 
     void Start()
@@ -63,15 +53,9 @@ public class EnemySpawn : MonoBehaviour
                 player = p.transform;
                 StartCoroutine(WaveRoutine());
             }
-            else
-            {
-                Debug.LogError("EnemySpawn: No Player found in scene! Waves will not start.");
-            }
         }
     }
-}
 
-    // Folosim Update doar pentru a număra timpul (util dacă vrei să afișezi ceasul pe ecran)
     void Update()
     {
         if (_isWaveActive)
@@ -85,27 +69,18 @@ public class EnemySpawn : MonoBehaviour
         while (_currentWaveIndex < waves.Count && player != null)
         {
             Wave currentWave = waves[_currentWaveIndex];
-            
-            // Resetăm timer-ul pentru noul val
             _currentWaveTime = 0f;
             _isWaveActive = true;
             
-            Debug.Log($"--- START VAL: {currentWave.waveName} (Durată: {currentWave.waveDuration}s) ---");
-
-            // Iterăm prin grupuri
             foreach (EnemyGroup group in currentWave.groups)
             {
-                // VERIFICARE TIMP: Dacă timpul a expirat deja, ieșim din bucla de grupuri
                 if (_currentWaveTime >= currentWave.waveDuration) break;
 
                 for (int r = 0; r < group.repeatCount; r++)
                 {
-                    // VERIFICARE TIMP: Verificăm înainte de fiecare spawn
                     if (_currentWaveTime >= currentWave.waveDuration) break;
-
                     if (player == null) yield break;
 
-                    // Spawnăm inamicii
                     foreach (EnemyConfig config in group.enemiesInGroup)
                     {
                         for (int i = 0; i < config.count; i++)
@@ -119,15 +94,11 @@ public class EnemySpawn : MonoBehaviour
                     while (waitTimer < group.spawnInterval)
                     {
                         waitTimer += Time.deltaTime;
-                        
-                        // Dacă în timp ce așteptăm intervalul, timpul total expiră -> STOP
                         if (_currentWaveTime >= currentWave.waveDuration) break;
-                        
-                        yield return null; // Așteaptă un frame
+                        yield return null; 
                     }
                 }
 
-                // Pauza după grup (cu aceeași logică de verificare a timpului)
                 float delayTimer = 0f;
                 while (delayTimer < group.delayAfterGroup)
                 {
@@ -137,11 +108,6 @@ public class EnemySpawn : MonoBehaviour
                 }
             }
 
-            // Aici ajungem în 2 cazuri:
-            // 1. S-au terminat grupurile (dar mai e timp).
-            // 2. A expirat timpul (waveDuration).
-
-            // Cazul 1: Dacă s-au terminat monștrii, dar timpul nu a trecut, așteptăm să treacă timpul
             while (_currentWaveTime < currentWave.waveDuration)
             {
                 if (player == null) yield break;
@@ -152,14 +118,12 @@ public class EnemySpawn : MonoBehaviour
             _currentWaveIndex++;
         }
 
-            StartShop();
+        StartShop();
     }
 
     private void StartShop()
     {
-        Debug.Log("JOC TERMINAT! AI SUPRAVIEȚUIT!");
-        // Aici poți opri timpul: Time.timeScale = 0;
-        // Sau poți afișa ecranul de victorie: UIManager.Instance.ShowWinScreen();
+        Debug.Log("WAVES FINISHED!");
     }
 
     private void SpawnEnemy(EnemyData data)

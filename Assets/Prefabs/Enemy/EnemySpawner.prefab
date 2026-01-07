@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4452578653702743108}
   - component: {fileID: 4603344211887478116}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03bb949125985e4f8f2a857fb613249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  enemyPrefab: {fileID: 768491299222288839, guid: d7dfe967980b58d4594b78d18868e3db, type: 3}
-  spawnInterval: 2
-  spawnRadius: 10
+  _enemyPrefab: {fileID: 768491299222288839, guid: 60d29f47f06b0394d8f8a04f2b8e4f60, type: 3}
+  _spawnInterval: 2
+  _spawnRadius: 10

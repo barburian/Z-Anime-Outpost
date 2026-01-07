@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4050617534985112159}
   - component: {fileID: 4332696286931443374}
   - component: {fileID: 418565731030607798}
+  - component: {fileID: -1307664661628777352}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -81,8 +82,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 215019797
-  m_SortingLayer: 3
+  m_SortingLayerID: 518570121
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5782521184205631276, guid: 47a3a69071fb3e246853687af2182861, type: 3}
@@ -193,3 +194,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b52c121fca95f4c826965b028f03ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _collisionDamage: 10
+  _health: {fileID: 0}
+--- !u!114 &-1307664661628777352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768491299222288839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d8c354886dc4b20a0b37cd86bbb130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
+  _maxHealth: 100
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []

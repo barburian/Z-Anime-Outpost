@@ -542,6 +542,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 178475114480332968, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
+      propertyPath: waves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 178475114480332968, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
+      propertyPath: waves.Array.data[0].count
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 178475114480332968, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
+      propertyPath: enemyPrefabList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 178475114480332968, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
+      propertyPath: waves.Array.data[0].waveName
+      value: Wave1
+      objectReference: {fileID: 0}
+    - target: {fileID: 178475114480332968, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
+      propertyPath: waves.Array.data[0].enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: dee8e6fb41f804645acc54457c31278a, type: 2}
+    - target: {fileID: 178475114480332968, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
+      propertyPath: waves.Array.data[0].enemyPrefab
+      value: 
+      objectReference: {fileID: 768491299222288839, guid: 60d29f47f06b0394d8f8a04f2b8e4f60, type: 3}
+    - target: {fileID: 178475114480332968, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
+      propertyPath: waves.Array.data[0].spawnInterval
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1350208636362642149, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
       propertyPath: _mapRenderer
       value: 
@@ -604,8 +632,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8888601364663254870, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
       propertyPath: startingWeapons.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8888601364663254870, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
+      propertyPath: 'startingWeapons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a1d8ab95c83910543ae230fcaba5a6f6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

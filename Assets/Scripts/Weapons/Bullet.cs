@@ -2,27 +2,29 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float _damage;
-    private Rigidbody2D _rb;
+    private float damage; 
+    private Rigidbody2D rb;
 
+    
     public void Setup(float weaponDamage, float bulletSpeed)
     {
-        _damage = weaponDamage;
-        if (_rb == null) _rb = GetComponent<Rigidbody2D>();
-        _rb.linearVelocity = transform.right * bulletSpeed; 
-        
-        CancelInvoke();
-        Invoke(nameof(Deactivate), 5f);
+        damage = weaponDamage;
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+
+        rb.linearVelocity = transform.right * bulletSpeed; 
+
+        Destroy(gameObject, 5f);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out IDamageable hitTarget))
+        
+        if (other.CompareTag("Enemy"))
         {
-            hitTarget.TakeDamage(_damage);
-            Deactivate();
+            Destroy(other.gameObject); 
+            
+            Destroy(gameObject);
         }
+       
     }
-
-    private void Deactivate() => gameObject.SetActive(false);
 }

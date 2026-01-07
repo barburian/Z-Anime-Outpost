@@ -15,9 +15,11 @@ public class EnemyData : ScriptableObject
     public string enemyName;
     public  EnemyCategory enemyCategory;
     public  Sprite enemySprite;
-    public  GameObject enemyPrefab; 
+    public GameObject enemyPrefab;
     public  float attackspeed; 
     public  float damage;
     public  float range;
     public  float bulletSpeed; 
+    public float health;
+    public float enemySpeed;
 }

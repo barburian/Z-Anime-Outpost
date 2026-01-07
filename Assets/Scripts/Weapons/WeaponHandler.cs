@@ -56,11 +56,21 @@ public class WeaponHandler : MonoBehaviour
     public void AddWeapon(WeaponData data)
     {
         GameObject newVisual = null;
-        if (weaponVisualPrefab != null && data.weaponSprite != null)
+
+        if (weaponVisualPrefab == null && data.weaponSprite == null)
         {
+         
+        }
+        else
+        {
+
             newVisual = Instantiate(weaponVisualPrefab, transform);
-            var sr = newVisual.GetComponent<SpriteRenderer>();
-            if (sr != null) sr.sprite = data.weaponSprite;
+            
+            var sr = newVisual.GetComponentInChildren<SpriteRenderer>();
+            
+            if (sr != null)sr.sprite = data.weaponSprite;
+            
+        
         }
 
         ActiveWeapon newWeapon = new ActiveWeapon

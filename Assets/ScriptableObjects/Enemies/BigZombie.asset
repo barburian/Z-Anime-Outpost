@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ac0f1ea9dcf5d4f9bbed00f6a4eb6d, type: 3}
+  m_Name: BigZombie
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  enemyName: BigZombie
+  enemyCategory: 0
+  enemySprite: {fileID: 4281610329393088906, guid: b7a2af8b59c49c9429656439fe4182d2, type: 3}
+  enemyPrefab: {fileID: 768491299222288839, guid: 95372c4b5edec114981ef92b0f10953a, type: 3}
+  attackspeed: 5
+  damage: 5
+  range: 1
+  bulletSpeed: 5
+  health: 100
+  enemySpeed: 3

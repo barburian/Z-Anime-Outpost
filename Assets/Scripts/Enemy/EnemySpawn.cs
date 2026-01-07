@@ -57,14 +57,19 @@ public class EnemySpawn : MonoBehaviour
         }
         else
         {
-            var p = GameObject.FindGameObjectWithTag("Player");
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
             if (p != null)
             {
                 player = p.transform;
                 StartCoroutine(WaveRoutine());
             }
+            else
+            {
+                Debug.LogError("EnemySpawn: No Player found in scene! Waves will not start.");
+            }
         }
     }
+}
 
     // Folosim Update doar pentru a număra timpul (util dacă vrei să afișezi ceasul pe ecran)
     void Update()

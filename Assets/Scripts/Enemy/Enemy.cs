@@ -1,20 +1,29 @@
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{   public static Enemy Instance { get; private set; }
-    void Start()
+{
+    [SerializeField] private float _collisionDamage = 10f;
+    [SerializeField] private HealthSystem _health;
+
+    private void Awake()
     {
-        
-    }
-    private void Awake() 
-    {
-   
-       
-        Instance = this;
+        if (_health == null) _health = GetComponent<HealthSystem>();
+        if (_health != null) _health.OnDeath.AddListener(() => Destroy(gameObject));
     }
 
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.TryGetComponent(out IDamageable target))
+        {
+            target.TakeDamage(_collisionDamage);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out IDamageable target))
+        {
+            target.TakeDamage(_collisionDamage);
+        }
     }
 }

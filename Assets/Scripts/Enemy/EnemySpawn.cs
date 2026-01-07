@@ -47,7 +47,7 @@ public class EnemySpawn : MonoBehaviour
         }
         else
         {
-            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            var p = GameObject.FindGameObjectWithTag("Player");
             if (p != null)
             {
                 player = p.transform;

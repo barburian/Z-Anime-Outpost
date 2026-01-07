@@ -3,30 +3,24 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
-    
-    [SerializeField] private HealthSystem _health;
-    public HealthSystem Health 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        get {
-            if (_health == null) _health = GetComponent<HealthSystem>();
-            return _health;
-        }
+        
     }
-
     private void Awake() 
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
-        Instance = this;
-        
-        if (Health != null)
+    // Standard Singleton Pattern: ensure only one player exists
+        if (Instance != null && Instance != this) 
         {
-            Health.OnDeath.AddListener(HandleDeath);
+            Destroy(gameObject);
+            return;
         }
+        Instance = this;
     }
-
-    private void HandleDeath()
+    // Update is called once per frame
+    void Update()
     {
-        Debug.Log("Player Died");
-        gameObject.SetActive(false); 
+        
     }
 }

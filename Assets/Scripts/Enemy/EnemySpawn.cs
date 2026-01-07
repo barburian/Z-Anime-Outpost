@@ -9,7 +9,6 @@ public class EnemySpawn : MonoBehaviour
 
     private Transform player;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _spawnWait = new WaitForSeconds(_spawnInterval);
@@ -17,7 +16,7 @@ public class EnemySpawn : MonoBehaviour
         if (Player.Instance != null)
         {
             player = Player.Instance.transform;
-            // Pornim cronometrul de spawn
+       
             StartCoroutine(SpawnEnemyRoutine());
         }
 

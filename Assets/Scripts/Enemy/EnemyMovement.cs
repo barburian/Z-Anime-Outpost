@@ -29,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
         Vector2 direction = (_player.position - transform.position).normalized;
 
         Vector2 newPos = _rb.position + direction * _speed * Time.fixedDeltaTime;
+        
         _rb.MovePosition(newPos);
     }
 }

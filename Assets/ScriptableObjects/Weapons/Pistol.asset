@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponType: 0
   weaponSprite: {fileID: -6628414004274166170, guid: 9104776533224c14a9ae97f049b7204f, type: 3}
   bulletPrefab: {fileID: 3572107072215999731, guid: b0f30866d3a312b4ea84e1755f54666f, type: 3}
-  fireRate: 5
+  fireRate: 0.5
   damage: 10
   range: 60
   bulletSpeed: 6

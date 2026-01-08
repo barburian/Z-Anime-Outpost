@@ -35,23 +35,28 @@ public class Health : MonoBehaviour
         }
     }
 
+    [Header("Loot")]
+    [SerializeField] private GameObject goldPrefab;
+    private float dropAmount;
+
+    public void SetDropAmount(float amount) { dropAmount = amount; }
+
     private void Die()
     {
         OnDeath?.Invoke();
-
-        // Logica diferită pentru Player vs Inamic
-        if (gameObject.CompareTag("Player"))
+        
+        if (!gameObject.CompareTag("Player"))
         {
-            Debug.Log("GAME OVER!");
-            // Aici ai opri timpul: Time.timeScale = 0;
-            // Sau ai afișa meniul de "You Died"
-            // Nu distrugem player-ul imediat, altfel stricăm camera și scripturile
-            gameObject.SetActive(false); 
+            if (goldPrefab != null)
+            {
+                GameObject goldObj = Instantiate(goldPrefab, transform.position, Quaternion.identity);
+                goldObj.GetComponent<Gold>().SetValue(dropAmount);
+            }
+            Destroy(gameObject);
         }
         else
         {
-            // Este inamic
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
-}
+    }

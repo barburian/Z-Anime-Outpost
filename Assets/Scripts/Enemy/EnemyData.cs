@@ -25,6 +25,7 @@ public class EnemyData : ScriptableObject
         public float health;
         public float damage;
         public float enemySpeed; // Movement Speed
+        public float goldValue;
         public float attackSpeed;
         public float range;
         public float bulletSpeed;

@@ -214,6 +214,7 @@ MonoBehaviour:
   OnDamageTaken:
     m_PersistentCalls:
       m_Calls: []
+  goldPrefab: {fileID: 2877437842817640249, guid: 6284476f78da34e1fb64a8ed64591fbb, type: 3}
 --- !u!114 &-8544499609486623878
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField]private SpriteRenderer _mapRenderer;
-    [SerializeField]private float _moveSpeed;
+    [SerializeField] private PlayerData _playerData;
+    private float _moveSpeed;
     private float _minX, _maxX, _minY, _maxY;
     private Vector2 _moveInput;
     
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     {   
         float playerWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
         float playerHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
+        _moveSpeed = _playerData.stats.movementSpeed;
 
 
         rb = GetComponent<Rigidbody2D>();

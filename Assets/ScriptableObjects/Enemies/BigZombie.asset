@@ -16,9 +16,10 @@ MonoBehaviour:
   enemyCategory: 0
   enemySprite: {fileID: 4281610329393088906, guid: b7a2af8b59c49c9429656439fe4182d2, type: 3}
   enemyPrefab: {fileID: 768491299222288839, guid: 95372c4b5edec114981ef92b0f10953a, type: 3}
-  attackspeed: 5
-  damage: 5
-  range: 1
-  bulletSpeed: 5
-  health: 100
-  enemySpeed: 3
+  stats:
+    health: 35
+    damage: 5
+    enemySpeed: 5
+    attackSpeed: 5
+    range: 5
+    bulletSpeed: 5

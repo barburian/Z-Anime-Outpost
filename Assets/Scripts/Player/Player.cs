@@ -2,25 +2,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static Player Instance { get; private set; }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static Player Instance;
+
+    [Header("Player Stats")]
+    public float playerMaxHealth = 100f; // Valoarea setată în Inspectorul Player-ului
+
+    void Awake()
     {
-        
-    }
-    private void Awake() 
-    {
-    // Standard Singleton Pattern: ensure only one player exists
-        if (Instance != null && Instance != this) 
-        {
-            Destroy(gameObject);
-            return;
-        }
         Instance = this;
     }
-    // Update is called once per frame
-    void Update()
+
+    void Start()
     {
-        
+        // Player-ul își inițializează singur componenta Health
+        Health myHealth = GetComponent<Health>();
+        if (myHealth != null)
+        {
+            myHealth.InitializeHealth(playerMaxHealth);
+        }
     }
 }

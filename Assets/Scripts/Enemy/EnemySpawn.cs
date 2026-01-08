@@ -133,6 +133,16 @@ public class EnemySpawn : MonoBehaviour
         Vector2 randomPos = Random.insideUnitCircle.normalized * _spawnRadius;
         Vector2 spawnPos = (Vector2)player.position + randomPos;
 
-        Instantiate(data.enemyPrefab, spawnPos, Quaternion.identity);
+        GameObject newEnemy =Instantiate(data.enemyPrefab, spawnPos, Quaternion.identity);
+        // 2. Căutăm scriptul de Stats
+        EnemyStats stats = newEnemy.GetComponent<EnemyStats>();
+        if (stats != null)
+        {
+            stats.Setup(data);
+        }
+        else
+        {
+            Debug.LogError("Ai uitat să pui scriptul 'EnemyStats' pe prefab-ul inamicului!");
+        }
     }
 }

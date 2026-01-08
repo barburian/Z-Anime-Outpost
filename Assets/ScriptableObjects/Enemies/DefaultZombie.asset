@@ -20,6 +20,7 @@ MonoBehaviour:
     health: 35
     damage: 5
     enemySpeed: 5
+    goldValue: 1
     attackSpeed: 5
     range: 5
     bulletSpeed: 5

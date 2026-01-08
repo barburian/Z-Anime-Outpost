@@ -13,8 +13,12 @@ public class EnemyStats : MonoBehaviour
         if (healthScript != null)
         {
             healthScript.InitializeHealth(data.stats.health);
+            healthScript.SetDropAmount(data.stats.goldValue);
         }
-
+        else
+        {
+            Debug.LogError("Health script not found on enemy prefab!");
+        }
         // 3. Setăm DAMAGE-UL (Asta ai cerut acum)
         var attackScript = GetComponent<EnemyAttack>();
         if (attackScript != null)

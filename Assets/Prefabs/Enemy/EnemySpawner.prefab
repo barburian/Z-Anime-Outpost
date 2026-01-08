@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4452578653702743108}
   - component: {fileID: 4603344211887478116}
-  - component: {fileID: -7562232116574575266}
   m_Layer: 3
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -47,22 +46,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _spawnRadius: 10
   waves: []
---- !u!114 &-7562232116574575266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2443276681650160966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f9c38a96467b94d9f83927d3db5054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDamageTaken:
-    m_PersistentCalls:
-      m_Calls: []

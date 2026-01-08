@@ -6,33 +6,40 @@ public class HealthBarUI : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private Image _healthBarFill;
 
-    private HealthSystem _playerHealth;
-
     private void Start() 
+    {
+        // 1. Verificăm dacă Player-ul există
+        if (Player.Instance != null)
+        {
+            // 2. Căutăm componenta Health de pe Player
+            Health playerHealth = Player.Instance.GetComponent<Health>();
+            
+            if (playerHealth != null)
+            {
+                // 3. Ne ABONĂM la evenimentul de damage
+                // Când player-ul pățește ceva, acest script va fi notificat automat
+                playerHealth.OnDamageTaken.AddListener(UpdateHealthBar);
+            }
+        }
+    }
+
+    // Este important să ne dezabonăm când obiectul este distrus, ca să nu avem erori
+    private void OnDestroy()
     {
         if (Player.Instance != null)
         {
-            _playerHealth = Player.Instance.Health;
-            
-            _playerHealth.OnHealthChanged.AddListener(UpdateHealthBar);
-            
-            UpdateHealthBar();
+            Health playerHealth = Player.Instance.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                playerHealth.OnDamageTaken.RemoveListener(UpdateHealthBar);
+            }
         }
     }
 
-    private void OnDestroy()
+    // Această funcție va fi apelată automat de Player când ia damage.
+    // healthPercentage va fi un număr între 0.0 (gol) și 1.0 (plin).
+    public void UpdateHealthBar(float healthPercentage)
     {
-        if (_playerHealth != null)
-        {
-            _playerHealth.OnHealthChanged.RemoveListener(UpdateHealthBar);
-        }
-    }
-
-    private void UpdateHealthBar()
-    {
-        if (_playerHealth == null) return;
-        
-        float fillPercentage = _playerHealth.CurrentHealth / _playerHealth.MaxHealth;
-        _healthBarFill.fillAmount = fillPercentage;
+        _healthBarFill.fillAmount = healthPercentage;
     }
 }

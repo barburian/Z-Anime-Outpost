@@ -12,7 +12,7 @@ public class EnemyStats : MonoBehaviour
         var healthScript = GetComponent<Health>();
         if (healthScript != null)
         {
-            healthScript.InitializeHealth(data.health);
+            healthScript.InitializeHealth(data.stats.health);
         }
 
         // 3. Setăm DAMAGE-UL (Asta ai cerut acum)
@@ -20,7 +20,7 @@ public class EnemyStats : MonoBehaviour
         if (attackScript != null)
         {
             // Luăm valoarea 'damage' din ScriptableObject și o trimitem la scriptul de atac
-            attackScript.SetDamage(data.damage);
+            attackScript.SetDamage(data.stats.damage);
         }
 
         // 4. (Opțional) Setăm Viteza

@@ -48,7 +48,7 @@ public class WeaponHandler : MonoBehaviour
             if (Time.time >= weapon.nextFireTime)
             {
                 Fire(weapon, individualTarget);
-                weapon.nextFireTime = Time.time + weapon.data.fireRate;
+                weapon.nextFireTime = Time.time + weapon.data.stats.fireRate;
             }
         }
     }
@@ -104,7 +104,7 @@ public class WeaponHandler : MonoBehaviour
         Bullet bulletScript = bulletObj.GetComponent<Bullet>();
         if (bulletScript != null)
         {
-            bulletScript.Setup(weapon.data.damage, weapon.data.bulletSpeed);
+            bulletScript.Setup(weapon.data.stats.damage, weapon.data.stats.bulletSpeed);
         }
     }
 

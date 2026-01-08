@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d7625ef009ffb4893ca0bcce476223, type: 3}
+  m_Name: DefaultPlayer
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  characterName: DefaultDude
+  characterSprite: {fileID: 534056322106834094, guid: ccc0ff533272c8f4e83cea870f1928ba, type: 3}
+  characterPrefab: {fileID: 5972249719620225919, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
+  stats:
+    health: 100
+    healthRegen: 5
+    armor: 0
+    magicResistance: 0
+    dodgeChance: 0
+    lifesteal: 0
+    damage: 15
+    attackSpeed: 0.6
+    critChance: 0
+    critDamage: 0
+    bulletSpeed: 0.7
+    movementSpeed: 10

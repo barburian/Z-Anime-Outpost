@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 127950059762502345}
   - component: {fileID: -366519794667652094}
   - component: {fileID: -9177901252642429527}
+  - component: {fileID: -3263684764698650782}
   m_Layer: 3
   m_Name: EnemyFat
   m_TagString: Enemy
@@ -255,3 +256,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49a7e909a5b1464389ea878689eea2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
+--- !u!114 &-3263684764698650782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768491299222288839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a483c42fc7a0c294cbcf1bf75dc4d0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootBag
+  itemPrefab: {fileID: 107122772914406208, guid: f94ad82c1861eca41bc28403c6d1b2ae, type: 3}
+  possibleLoot:
+  - {fileID: 11400000, guid: a34a4c80265e3c44bbfaee371f8817cf, type: 2}
+  dropChance: 100

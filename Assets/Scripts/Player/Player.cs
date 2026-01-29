@@ -8,14 +8,25 @@ public class Player : MonoBehaviour
 
     [Header("Player Stats")]
     public float playerMaxHealth = 100f; // Valoarea setată în Inspectorul Player-ului
+    public PlayerStatsManager statsManager;
 
     [Header("Events")]
     public UnityEvent<float> OnGoldChanged;
 
     void Awake()
     {
+    statsManager = GetComponent<PlayerStatsManager>();
+    
+    // Safety check: If it's missing, add it
+    if (statsManager == null) 
+    {
+        statsManager = gameObject.AddComponent<PlayerStatsManager>();
+    }
+    if (Instance == null)
+    {
         Instance = this;
     }
+}
 
     public void AddGold(float amount)
     {

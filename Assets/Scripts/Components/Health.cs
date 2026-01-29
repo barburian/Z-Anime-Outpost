@@ -11,6 +11,8 @@ public class Health : MonoBehaviour
     public UnityEvent OnDeath; // Putem lega sunete sau efecte aici din Inspector
     public UnityEvent<float> OnDamageTaken; // Putem lega bara de viață aici
 
+
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -55,8 +57,16 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
         }
         else
-        {
+        {   
             gameObject.SetActive(false);
         }
+        if(gameObject.CompareTag("Enemy"))
+        {}
+        LootBag lootBag = GetComponent<LootBag>();
+            if (lootBag != null)
+            {  
+                lootBag.TryDropLoot();
+            }
+        gameObject.SetActive(false);
     }
-    }
+}

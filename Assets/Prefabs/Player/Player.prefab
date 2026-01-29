@@ -143,6 +143,7 @@ MonoBehaviour:
   weaponOrbitRadius: 1.5
   startingWeapons:
   - {fileID: 11400000, guid: a1d8ab95c83910543ae230fcaba5a6f6, type: 2}
+  - {fileID: 11400000, guid: a1d8ab95c83910543ae230fcaba5a6f6, type: 2}
 --- !u!1 &5972249719620225919
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +160,7 @@ GameObject:
   - component: {fileID: 8430266130873357901}
   - component: {fileID: 1970996343049963836}
   - component: {fileID: 6534736460946636779}
+  - component: {fileID: 6717884101359555068}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -329,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _mapRenderer: {fileID: 0}
-  _moveSpeed: 15
+  _playerData: {fileID: 11400000, guid: 6fe8c5ff135737f4896b2748fa52259f, type: 2}
 --- !u!114 &8430266130873357901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,7 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4423584ad3f87cf47b0f74ef511154bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  playerMaxHealth: 100
+  playerMaxHealth: 1000
+  OnGoldChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6534736460946636779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,6 +396,19 @@ MonoBehaviour:
   OnDamageTaken:
     m_PersistentCalls:
       m_Calls: []
+  goldPrefab: {fileID: 0}
+--- !u!114 &6717884101359555068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5972249719620225919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce24c1891d8cc7d4697405cfc07acfdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsManager
 --- !u!1001 &3951465458097124571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -443,6 +461,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.data[0].waveName
+      value: Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.data[0].waveDuration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.data[0].groups.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.data[0].groups.Array.data[0].groupName
+      value: Default
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.data[0].groups.Array.data[0].repeatCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.data[0].groups.Array.data[0].spawnInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.data[0].groups.Array.data[0].delayAfterGroup
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.data[0].groups.Array.data[0].enemiesInGroup.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.data[0].groups.Array.data[0].enemiesInGroup.Array.data[0].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603344211887478116, guid: a5f1fb573f4e4f2439ee3141dffa4af0, type: 3}
+      propertyPath: waves.Array.data[0].groups.Array.data[0].enemiesInGroup.Array.data[0].enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: cbdfe76d21788c34997174b8518d2ab2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

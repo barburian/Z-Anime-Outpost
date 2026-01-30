@@ -6,12 +6,19 @@ public class Player : MonoBehaviour
     public static Player Instance;
     private float totalGold = 0;
 
+    [Header("Level System")]
+    public int currentLevel = 1;
+    public float currentXP = 0;
+    public float xpToLevelUp = 100f;
+
     [Header("Player Stats")]
     public float playerMaxHealth = 100f; // Valoarea setată în Inspectorul Player-ului
     public PlayerStatsManager statsManager;
 
     [Header("Events")]
     public UnityEvent<float> OnGoldChanged;
+    public UnityEvent<float, float> OnXPChanged;
+    public UnityEvent<int> OnLevelUp;
 
     void Awake()
     {
@@ -31,8 +38,23 @@ public class Player : MonoBehaviour
     public void AddGold(float amount)
     {
         totalGold += amount;
-        Debug.Log($"Gold Collected! Total: {totalGold}");
         OnGoldChanged?.Invoke(totalGold);
+
+        currentXP += amount;
+        
+        while (currentXP >= xpToLevelUp)
+        {
+            LevelUp();
+        }
+
+        OnXPChanged?.Invoke(currentXP, xpToLevelUp);
+    }
+
+    private void LevelUp()
+    {
+        currentXP -= xpToLevelUp;
+        currentLevel++;
+        OnLevelUp?.Invoke(currentLevel);
     }
 
     void Start()
@@ -43,5 +65,6 @@ public class Player : MonoBehaviour
         {
             myHealth.InitializeHealth(playerMaxHealth);
         }
+        OnXPChanged?.Invoke(currentXP, xpToLevelUp);
     }
 }

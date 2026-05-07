@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 1970996343049963836}
   - component: {fileID: 6534736460946636779}
   - component: {fileID: 6717884101359555068}
+  - component: {fileID: 6096036190863078993}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -243,7 +244,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!50 &5154508476335118818
 Rigidbody2D:
@@ -374,8 +375,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4423584ad3f87cf47b0f74ef511154bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  currentLevel: 1
+  currentXP: 0
+  xpToLevelUp: 100
   playerMaxHealth: 1000
+  statsManager: {fileID: 0}
   OnGoldChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnXPChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLevelUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &6534736460946636779
@@ -397,6 +408,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   goldPrefab: {fileID: 0}
+  xpGemPrefab: {fileID: 0}
 --- !u!114 &6717884101359555068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +421,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce24c1891d8cc7d4697405cfc07acfdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsManager
+--- !u!114 &6096036190863078993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5972249719620225919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b191dd3cb5d754c9b22242d8f4201d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimator
+  _sheet: {fileID: 2800000, guid: 39e09096c63311847b103a22067b53b8, type: 3}
+  _frameWidth: 128
+  _frameHeight: 128
+  _frameRate: 8
+  _idleDown:
+    row: 0
+    startFrame: 0
+    frameCount: 1
+  _idleUp:
+    row: 0
+    startFrame: 1
+    frameCount: 1
+  _idleRight:
+    row: 0
+    startFrame: 2
+    frameCount: 1
+  _idleLeft:
+    row: 0
+    startFrame: 3
+    frameCount: 1
+  _walkDown:
+    row: 1
+    startFrame: 0
+    frameCount: 8
+  _walkUp:
+    row: 2
+    startFrame: 0
+    frameCount: 8
+  _walkRight:
+    row: 3
+    startFrame: 0
+    frameCount: 8
+  _walkLeft:
+    row: 4
+    startFrame: 0
+    frameCount: 8
 --- !u!1001 &3951465458097124571
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -19,12 +19,9 @@ public class EnemyAttack : MonoBehaviour
             // Verificăm dacă a trecut timpul de așteptare între lovituri
             if (Time.time >= nextHitTime)
             {
-                // Căutăm viața player-ului
-                Health playerHealth = collision.gameObject.GetComponent<Health>();
-                
-                if (playerHealth != null)
+                if (collision.gameObject.TryGetComponent(out IDamageable target))
                 {
-                    playerHealth.TakeDamage(damageAmount);
+                    target.TakeDamage(damageAmount);
                     
                     // Resetăm cronometrul
                     nextHitTime = Time.time + hitInterval;

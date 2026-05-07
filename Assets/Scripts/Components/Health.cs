@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events; // Necesar pentru UI (Lifebar) pe viitor
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IDamageable
 {
     [Header("Setări")]
     private float maxHealth ;
@@ -39,9 +39,12 @@ public class Health : MonoBehaviour
 
     [Header("Loot")]
     [SerializeField] private GameObject goldPrefab;
+    [SerializeField] private GameObject xpGemPrefab;
     private float dropAmount;
+    private float xpDropAmount;
 
     public void SetDropAmount(float amount) { dropAmount = amount; }
+    public void SetXPDropAmount(float amount) { xpDropAmount = amount; }
 
     private void Die()
     {
@@ -51,10 +54,15 @@ public class Health : MonoBehaviour
         {
             if (goldPrefab != null)
             {
-                GameObject goldObj = Instantiate(goldPrefab, transform.position, Quaternion.identity);
+                GameObject goldObj = ObjectPool.Instance.Get(goldPrefab, transform.position, Quaternion.identity);
                 goldObj.GetComponent<Gold>().SetValue(dropAmount);
             }
-            Destroy(gameObject);
+            if (xpGemPrefab != null)
+            {
+                GameObject gemObj = ObjectPool.Instance.Get(xpGemPrefab, transform.position, Quaternion.identity);
+                gemObj.GetComponent<XPGem>().SetValue(xpDropAmount);
+            }
+            ObjectPool.Instance.Return(gameObject);
         }
         else
         {   

@@ -729,30 +729,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 3482233744516043305, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.w
-      value: 0.049999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482233744516043305, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.x
-      value: 0.049999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482233744516043305, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.y
-      value: 0.049999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482233744516043305, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.z
-      value: 0.049999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482233744516043305, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482233744516043305, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.16
-      objectReference: {fileID: 0}
     - target: {fileID: 5343876805602880167, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.07267
@@ -800,14 +776,6 @@ PrefabInstance:
     - target: {fileID: 5972249719620225919, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
       propertyPath: m_Layer
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6096036190863078993, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
-      propertyPath: _frameWidth
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 6096036190863078993, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
-      propertyPath: _frameHeight
-      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 8888601364663254870, guid: f7fb0c6ca072eed47adaafab013235d6, type: 3}
       propertyPath: startingWeapons.Array.size

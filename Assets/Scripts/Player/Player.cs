@@ -39,13 +39,14 @@ public class Player : MonoBehaviour
     {
         totalGold += amount;
         OnGoldChanged?.Invoke(totalGold);
+    }
 
+    public void AddXP(float amount)
+    {
         currentXP += amount;
-        
+
         while (currentXP >= xpToLevelUp)
-        {
             LevelUp();
-        }
 
         OnXPChanged?.Invoke(currentXP, xpToLevelUp);
     }

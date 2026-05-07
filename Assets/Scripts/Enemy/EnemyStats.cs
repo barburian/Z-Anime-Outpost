@@ -14,6 +14,7 @@ public class EnemyStats : MonoBehaviour
         {
             healthScript.InitializeHealth(data.stats.health);
             healthScript.SetDropAmount(data.stats.goldValue);
+            healthScript.SetXPDropAmount(data.stats.xpValue);
         }
         else
         {

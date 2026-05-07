@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Gold : MonoBehaviour, IPoolable
+public class XPGem : MonoBehaviour, IPoolable
 {
     private float _value;
 
@@ -10,7 +10,7 @@ public class Gold : MonoBehaviour, IPoolable
     {
         if (other.CompareTag("Player"))
         {
-            Player.Instance.AddGold(_value);
+            Player.Instance.AddXP(_value);
             ObjectPool.Instance.Return(gameObject);
         }
     }

@@ -1,39 +1,49 @@
+using System.Collections;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPoolable
 {
-    private float damage; 
+    private float damage;
     private Rigidbody2D rb;
+    private Coroutine _returnTimer;
 
-    
     public void Setup(float weaponDamage, float bulletSpeed)
     {
         damage = weaponDamage;
         if (rb == null) rb = GetComponent<Rigidbody2D>();
-
-        rb.linearVelocity = transform.right * bulletSpeed; 
-
-        Destroy(gameObject, 5f);
+        rb.linearVelocity = transform.right * bulletSpeed;
+        _returnTimer = StartCoroutine(ReturnAfterDelay(5f));
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        
-        // Ignorăm Player-ul
         if (other.CompareTag("Player")) return;
 
-        // Căutăm componenta Health pe obiectul lovit (Inamic)
-        if (other.TryGetComponent(out Health enemyHealth))
-        {
-            // Dacă are viață, îi dăm damage-ul setat în glonț
-            enemyHealth.TakeDamage(damage);
-        }
+        if (other.TryGetComponent(out IDamageable target))
+            target.TakeDamage(damage);
 
-        // Dacă lovim inamicul sau pereții, distrugem glonțul
         if (other.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-        }
-       
+            ReturnToPool();
+    }
+
+    private IEnumerator ReturnAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ReturnToPool();
+    }
+
+    private void ReturnToPool()
+    {
+        if (!gameObject.activeInHierarchy) return;
+        if (_returnTimer != null) { StopCoroutine(_returnTimer); _returnTimer = null; }
+        ObjectPool.Instance.Return(gameObject);
+    }
+
+    public void OnSpawn() { }
+
+    public void OnDespawn()
+    {
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity = Vector2.zero;
     }
 }

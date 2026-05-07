@@ -99,7 +99,7 @@ public class WeaponHandler : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
-        GameObject bulletObj = Instantiate(weapon.data.bulletPrefab, spawnPos, rotation);
+        GameObject bulletObj = ObjectPool.Instance.Get(weapon.data.bulletPrefab, spawnPos, rotation);
 
         Bullet bulletScript = bulletObj.GetComponent<Bullet>();
         if (bulletScript != null)

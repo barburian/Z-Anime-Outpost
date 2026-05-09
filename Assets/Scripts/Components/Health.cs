@@ -1,41 +1,15 @@
 using UnityEngine;
-using UnityEngine.Events; // Necesar pentru UI (Lifebar) pe viitor
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour, IDamageable
 {
     [Header("Setări")]
-    private float maxHealth ;
+    private float maxHealth;
     private float currentHealth;
 
     [Header("Events (Opțional)")]
-    public UnityEvent OnDeath; // Putem lega sunete sau efecte aici din Inspector
-    public UnityEvent<float> OnDamageTaken; // Putem lega bara de viață aici
-
-
-
-    void Start()
-    {
-        currentHealth = maxHealth;
-    }
-    public void InitializeHealth(float healthValue)
-    {
-        maxHealth = healthValue;
-        currentHealth = healthValue;
-    }
-
-    public void TakeDamage(float amount)
-    {
-        currentHealth -= amount;
-        Debug.Log($"{gameObject.name} a primit {amount} damage. Viață rămasă: {currentHealth}");
-
-        // Invocăm evenimentul (pentru bara de viață, flash roșu, etc.)
-        OnDamageTaken?.Invoke(currentHealth / maxHealth);
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
+    public UnityEvent OnDeath;
+    public UnityEvent<float> OnDamageTaken;
 
     [Header("Loot")]
     [SerializeField] private GameObject goldPrefab;
@@ -43,14 +17,61 @@ public class Health : MonoBehaviour, IDamageable
     private float dropAmount;
     private float xpDropAmount;
 
+    public float MaxHealth => maxHealth;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
+    public void InitializeHealth(float healthValue)
+    {
+        maxHealth = healthValue;
+        currentHealth = healthValue;
+    }
+
+    private const float ArmorK = 100f;
+
+    public void TakeDamage(float amount)
+    {
+        if (gameObject.CompareTag("Player") && Player.Instance != null)
+        {
+            float armor = Player.Instance.GetEffectiveArmor();
+            amount = amount * (ArmorK / (ArmorK + armor));
+            amount = Mathf.Max(1f, amount);
+        }
+
+        currentHealth -= amount;
+        OnDamageTaken?.Invoke(currentHealth / maxHealth);
+
+        if (currentHealth <= 0)
+            Die();
+    }
+
+    public void AddMaxHealth(float delta, bool healDelta)
+    {
+        maxHealth += delta;
+        if (healDelta)
+            currentHealth = Mathf.Min(currentHealth + delta, maxHealth);
+        OnDamageTaken?.Invoke(currentHealth / maxHealth);
+    }
+
     public void SetDropAmount(float amount) { dropAmount = amount; }
     public void SetXPDropAmount(float amount) { xpDropAmount = amount; }
 
     private void Die()
     {
         OnDeath?.Invoke();
-        
-        if (!gameObject.CompareTag("Player"))
+
+        LootBag lootBag = GetComponent<LootBag>();
+        if (lootBag != null)
+            lootBag.TryDropLoot();
+
+        if (gameObject.CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+        }
+        else
         {
             if (goldPrefab != null)
             {
@@ -64,17 +85,5 @@ public class Health : MonoBehaviour, IDamageable
             }
             ObjectPool.Instance.Return(gameObject);
         }
-        else
-        {   
-            gameObject.SetActive(false);
-        }
-        if(gameObject.CompareTag("Enemy"))
-        {}
-        LootBag lootBag = GetComponent<LootBag>();
-            if (lootBag != null)
-            {  
-                lootBag.TryDropLoot();
-            }
-        gameObject.SetActive(false);
     }
 }

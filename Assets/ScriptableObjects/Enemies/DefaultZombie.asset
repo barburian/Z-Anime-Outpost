@@ -21,6 +21,7 @@ MonoBehaviour:
     damage: 5
     enemySpeed: 5
     goldValue: 1
+    xpValue: 0
     attackSpeed: 5
     range: 5
     bulletSpeed: 5

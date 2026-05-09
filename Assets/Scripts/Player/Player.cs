@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,8 +13,9 @@ public class Player : MonoBehaviour
     public float xpToLevelUp = 100f;
 
     [Header("Player Stats")]
-    public float playerMaxHealth = 100f; // Valoarea setată în Inspectorul Player-ului
+    [SerializeField] private PlayerData _playerData;
     public PlayerStatsManager statsManager;
+    private Health _health;
 
     [Header("Events")]
     public UnityEvent<float> OnGoldChanged;
@@ -33,6 +35,8 @@ public class Player : MonoBehaviour
     {
         Instance = this;
     }
+
+    _playerData?.InitRuntimeStats();
 }
 
     public void AddGold(float amount)
@@ -60,12 +64,45 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        // Player-ul își inițializează singur componenta Health
-        Health myHealth = GetComponent<Health>();
-        if (myHealth != null)
+        _health = GetComponent<Health>();
+        if (_health != null)
         {
-            myHealth.InitializeHealth(playerMaxHealth);
+            float effectiveMax = statsManager.GetStatValue(_playerData.stats.health, StatType.PlayerHealth);
+            _health.InitializeHealth(effectiveMax);
+            _playerData.runtimeStats.health = effectiveMax;
         }
+        statsManager.OnStatsChanged.AddListener(OnStatsChanged);
         OnXPChanged?.Invoke(currentXP, xpToLevelUp);
+    }
+
+    void OnDestroy()
+    {
+        if (statsManager != null)
+            statsManager.OnStatsChanged.RemoveListener(OnStatsChanged);
+    }
+
+    public float GetEffectiveArmor()
+    {
+        return statsManager.GetStatValue(_playerData.stats.armor, StatType.PlayerArmor);
+    }
+
+    private void OnStatsChanged(List<StatType> changed)
+    {
+        if (changed.Contains(StatType.PlayerHealth))
+        {
+            float newMax = statsManager.GetStatValue(_playerData.stats.health, StatType.PlayerHealth);
+            if (_health != null)
+            {
+                _playerData.runtimeStats.health = newMax;
+                float delta = newMax - _health.MaxHealth;
+                if (delta != 0)
+                    _health.AddMaxHealth(delta, true);
+            }
+        }
+
+        if (changed.Contains(StatType.PlayerArmor))
+        {
+            _playerData.runtimeStats.armor = GetEffectiveArmor();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,12 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D        _rb;
     private SpriteAnimator     _animator;
     private AnimationDirection _lastDir = AnimationDirection.Down;
+    private PlayerStatsManager _statsManager;
 
     void Start()
     {
-        _rb        = GetComponent<Rigidbody2D>();
-        _animator  = GetComponent<SpriteAnimator>();
-        _moveSpeed = _playerData.stats.movementSpeed;
+        _rb       = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<SpriteAnimator>();
 
         float pw = GetComponent<SpriteRenderer>().bounds.extents.x;
         float ph = GetComponent<SpriteRenderer>().bounds.extents.y;
@@ -26,6 +27,36 @@ public class PlayerMovement : MonoBehaviour
         _maxX = _mapRenderer.bounds.max.x - pw;
         _minY = _mapRenderer.bounds.min.y + ph;
         _maxY = _mapRenderer.bounds.max.y - ph;
+
+        if (Player.Instance != null && Player.Instance.statsManager != null)
+        {
+            _statsManager = Player.Instance.statsManager;
+            _statsManager.OnStatsChanged.AddListener(OnStatsChanged);
+            RefreshSpeed();
+        }
+        else
+        {
+            _moveSpeed = _playerData.stats.movementSpeed;
+            _playerData.runtimeStats.movementSpeed = _moveSpeed;
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (Player.Instance != null && _statsManager != null)
+            _statsManager.OnStatsChanged.RemoveListener(OnStatsChanged);
+    }
+
+    private void OnStatsChanged(List<StatType> changed)
+    {
+        if (!changed.Contains(StatType.PlayerMoveSpeed)) return;
+        RefreshSpeed();
+    }
+
+    private void RefreshSpeed()
+    {
+        _moveSpeed = _statsManager.GetStatValue(_playerData.stats.movementSpeed, StatType.PlayerMoveSpeed);
+        _playerData.runtimeStats.movementSpeed = _moveSpeed;
     }
 
     void OnMove(InputValue value)

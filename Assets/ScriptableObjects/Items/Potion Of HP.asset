@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Potion Of HP
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Health Potion
-  icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   description: ADD+2 HP
   modifiers:
   - statType: 0
